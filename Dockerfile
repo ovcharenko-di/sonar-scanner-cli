@@ -1,4 +1,4 @@
-FROM  mirror.gcr.io/library/eclipse-temurin
+FROM  eclipse-temurin:17
 
 LABEL maintainers = "strizhhh@mail.ru, nixel2007@gmail.com"
 
@@ -8,7 +8,7 @@ RUN apt-get update \
         git \
         openssh-client \
         unzip \
-        git-lfs \
+    # git-lfs
     && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         git-lfs \
@@ -17,7 +17,7 @@ RUN apt-get update \
         /var/cache/debconf
 
 ENV TZ=Europe/Moscow \
-    SONAR_SCANNER_VERSION="6.1.0.4477" \
+    SONAR_SCANNER_VERSION="6.2.0.4584" \
     SONAR_SCANNER_HOME=/usr/lib/sonar-scanner
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
